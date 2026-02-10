@@ -1,0 +1,5 @@
+{
+  "name": "StreamPulse Analytics",
+  "description": "A high-fidelity digital twin of a production-grade analytics engineering project. Demonstrates BigQuery data warehousing, dbt transformation layers (staging, intermediate, marts), metrics layers for 50M+ events, and automated data quality monitoring.",
+  "requestFramePermissions": []
+}

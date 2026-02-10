@@ -1,0 +1,23 @@
+{
+  "name": "streampulse-analytics",
+  "version": "1.0.0",
+  "description": "Analytics Engineering Portfolio Project",
+  "main": "index.tsx",
+  "dependencies": {
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "recharts": "^3.7.0",
+    "lucide-react": "^0.563.0",
+    "@google/genai": "^1.39.0"
+  },
+  "keywords": [
+    "analytics-engineering",
+    "dbt",
+    "bigquery",
+    "portfolio",
+    "data-engineering",
+    "gemini-api"
+  ],
+  "author": "Analytics Engineer",
+  "license": "MIT"
+}
