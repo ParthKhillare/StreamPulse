@@ -58,5 +58,5 @@ The project follows a strict encapsulation strategy:
 - **Schema Validation**: Includes a simulated automated QA suite that validates referential integrity and schema drift for external finance datasets.
 
 ---
-**Contact: [@analytics-engineer](https://github.com/your-username)**  
+**Contact: [Parth Khillare](https://github.com/ParthKhillare)**  
 *Created as a Portfolio Piece for Analytics Engineering.*
