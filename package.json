@@ -3,20 +3,32 @@
   "version": "1.0.0",
   "description": "Analytics Engineering Portfolio Project",
   "main": "index.tsx",
+  "type": "module",
   "dependencies": {
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "recharts": "^3.7.0",
-    "lucide-react": "^0.563.0",
-    "@google/genai": "^1.39.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "recharts": "^2.8.0",
+    "lucide-react": "^0.292.0",
+    "@google/genai": "^1.47.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@vitejs/plugin-react": "^4.0.0",
+    "typescript": "^5.0.0",
+    "vite": "^4.4.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "keywords": [
     "analytics-engineering",
     "dbt",
     "bigquery",
     "portfolio",
-    "data-engineering",
-    "gemini-api"
+    "data-engineering"
   ],
   "author": "Analytics Engineer",
   "license": "MIT"

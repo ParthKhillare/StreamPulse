@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+@layer components {
+  .glass-morphism {
+    @apply bg-white/80 backdrop-blur-md border border-white/20;
+  }
+  
+  .metric-card {
+    @apply bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition-shadow;
+  }
+  
+  .status-indicator {
+    @apply inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold;
+  }
+  
+  .status-success {
+    @apply bg-emerald-100 text-emerald-800;
+  }
+  
+  .status-warning {
+    @apply bg-amber-100 text-amber-800;
+  }
+  
+  .status-error {
+    @apply bg-red-100 text-red-800;
+  }
+}
