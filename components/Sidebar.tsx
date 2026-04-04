@@ -1,7 +1,6 @@
 import React from 'react';
 import { 
   LayoutDashboard, 
-  MessageSquare,
   TrendingUp,
   BarChart3
 } from 'lucide-react';
@@ -14,10 +13,10 @@ interface SidebarProps {
 const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
   const menuItems = [
     { id: 'dashboard', label: 'Netflix Dashboard', icon: LayoutDashboard },
+    { id: 'live', label: 'Live Trending Data', icon: TrendingUp },
     { id: 'trending', label: 'Trending Shows', icon: TrendingUp },
     { id: 'comprehensive', label: 'All Shows & Movies', icon: BarChart3 },
     { id: 'analysis', label: 'Trending Analysis', icon: BarChart3 },
-    { id: 'consultant', label: 'Analytics Q&A', icon: MessageSquare },
   ];
 
   return (

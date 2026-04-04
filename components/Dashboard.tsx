@@ -71,21 +71,21 @@ const Dashboard: React.FC<DashboardProps> = ({ liveMetrics }) => {
       <header className="flex justify-between items-end">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <h1 className="text-3xl font-bold text-slate-900">Current Performance & KPIs</h1>
-            <span className="px-2 py-0.5 bg-slate-100 text-slate-700 text-[10px] font-bold rounded uppercase flex items-center gap-1">
+            <h1 className="text-3xl font-bold text-white">Current Performance & KPIs</h1>
+            <span className="px-2 py-0.5 bg-gray-800 text-red-500 text-[10px] font-bold rounded uppercase flex items-center gap-1">
               <Calendar size={10} /> Real-Time Actuals
             </span>
           </div>
-          <p className="text-slate-500 max-w-2xl">
+          <p className="text-gray-400 max-w-2xl">
             Live analytics dashboard displaying verified performance metrics. No projections—only verified market data.
           </p>
         </div>
         <div className="flex gap-2">
-          <div className="flex items-center gap-2 px-3 py-1.5 bg-slate-900 text-white rounded-lg text-xs font-semibold shadow-lg ring-4 ring-emerald-500/10">
-            <Zap size={14} className="text-emerald-500 fill-emerald-500" />
+          <div className="flex items-center gap-2 px-3 py-1.5 bg-gray-900 text-white rounded-lg text-xs font-semibold shadow-lg ring-4 ring-red-500/10">
+            <Zap size={14} className="text-red-500 fill-red-500" />
             Verified Ledger Active
           </div>
-          <div className="px-3 py-1.5 bg-slate-100 text-slate-700 rounded-lg text-xs font-semibold shadow-lg ring-4 ring-emerald-500/10">
+          <div className="px-3 py-1.5 bg-gray-800 text-white rounded-lg text-xs font-semibold shadow-lg ring-4 ring-red-500/10">
             <select 
               value={currency}
               onChange={(e) => setCurrency(e.target.value)}
@@ -103,35 +103,35 @@ const Dashboard: React.FC<DashboardProps> = ({ liveMetrics }) => {
       {/* Metric Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {displayMetrics.map((metric, idx) => (
-          <div key={idx} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group relative overflow-hidden">
-             <div className="absolute top-0 right-0 w-24 h-24 bg-red-50 rounded-bl-full -mr-12 -mt-12 transition-all group-hover:bg-red-100/50"></div>
+          <div key={idx} className="bg-gray-900 p-6 rounded-2xl border border-gray-800 shadow-sm hover:shadow-md transition-shadow group relative overflow-hidden">
+             <div className="absolute top-0 right-0 w-24 h-24 bg-red-900/20 rounded-bl-full -mr-12 -mt-12 transition-all group-hover:bg-red-900/30"></div>
             <div className="flex justify-between items-start mb-4 relative z-10">
-              <div className="p-2 bg-slate-50 group-hover:bg-red-50 transition-colors rounded-lg">
-                {metric.title.includes('Revenue') ? <DollarSign className="text-slate-600 group-hover:text-red-600" size={20} /> : 
-                 metric.title.includes('Members') || metric.title.includes('Subscribers') ? <Users className="text-slate-600 group-hover:text-red-600" size={20} /> : 
-                 metric.title.includes('Churn') ? <TrendingDown className="text-slate-600 group-hover:text-red-600" size={20} /> : 
-                 <Info className="text-slate-600 group-hover:text-red-600" size={20} />}
+              <div className="p-2 bg-gray-800 group-hover:bg-red-900/20 transition-colors rounded-lg">
+                {metric.title.includes('Revenue') ? <DollarSign className="text-gray-400 group-hover:text-red-500" size={20} /> : 
+                 metric.title.includes('Members') || metric.title.includes('Subscribers') ? <Users className="text-gray-400 group-hover:text-red-500" size={20} /> : 
+                 metric.title.includes('Churn') ? <TrendingDown className="text-gray-400 group-hover:text-red-500" size={20} /> : 
+                 <Info className="text-gray-400 group-hover:text-red-500" size={20} />}
               </div>
-              <div className={`flex items-center gap-1 text-sm font-bold ${metric.change >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
+              <div className={`flex items-center gap-1 text-sm font-bold ${metric.change >= 0 ? 'text-green-500' : 'text-red-500'}`}>
                 {metric.change >= 0 ? <ArrowUpRight size={16} /> : <ArrowDownRight size={16} />}
                 {Math.abs(metric.change)}%
               </div>
             </div>
-            <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest relative z-10">{metric.title}</h3>
-            <p className="text-3xl font-bold text-slate-900 mt-1 relative z-10">{metric.value}</p>
+            <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest relative z-10">{metric.title}</h3>
+            <p className="text-3xl font-bold text-white mt-1 relative z-10">{metric.value}</p>
           </div>
         ))}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Main Growth Chart - Historical Actuals only */}
-        <div className="lg:col-span-2 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+        <div className="lg:col-span-2 bg-gray-900 p-6 rounded-2xl border border-gray-800 shadow-sm">
           <div className="flex justify-between items-start mb-6">
             <div>
-              <h3 className="text-lg font-bold text-slate-800">MRR Quarterly Growth Trajectory</h3>
-              <p className="text-xs text-slate-400">Verified Revenue performance from 2023 through current period.</p>
+              <h3 className="text-lg font-bold text-white">MRR Quarterly Growth Trajectory</h3>
+              <p className="text-xs text-gray-400">Verified Revenue performance from 2023 through current period.</p>
             </div>
-            <div className="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-black uppercase rounded border border-emerald-100">
+            <div className="px-3 py-1 bg-red-900/20 text-red-500 text-[10px] font-black uppercase rounded border border-red-600/20">
               Historical Verification: 100%
             </div>
           </div>
@@ -144,11 +144,11 @@ const Dashboard: React.FC<DashboardProps> = ({ liveMetrics }) => {
                     <stop offset="95%" stopColor="#ef4444" stopOpacity={0}/>
                   </linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
-                <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fill: '#94a3b8', fontSize: 11}} dy={10} />
-                <YAxis axisLine={false} tickLine={false} tick={{fill: '#94a3b8', fontSize: 11}} tickFormatter={(v) => `${formatCurrency(v/1000000000).replace(/\D/g, '')}B`} />
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#374151" />
+                <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fill: '#9ca3af', fontSize: 11}} dy={10} />
+                <YAxis axisLine={false} tickLine={false} tick={{fill: '#9ca3af', fontSize: 11}} tickFormatter={(v) => `${formatCurrency(v/1000000000).replace(/\D/g, '')}B`} />
                 <Tooltip 
-                  contentStyle={{ borderRadius: '16px', border: 'none', boxShadow: '0 20px 25px -5px rgb(0 0 0 / 0.1)', backgroundColor: '#1e293b', color: '#fff' }}
+                  contentStyle={{ borderRadius: '16px', border: 'none', boxShadow: '0 20px 25px -5px rgb(0 0 0 / 0.1)', backgroundColor: '#1f293b', color: '#fff' }}
                 />
                 <Area type="monotone" dataKey="mrr" stroke="#ef4444" strokeWidth={4} fill="url(#colorActual)" />
               </AreaChart>
@@ -157,24 +157,24 @@ const Dashboard: React.FC<DashboardProps> = ({ liveMetrics }) => {
         </div>
 
         {/* Historical Seasonality Heatmap */}
-        <div className="bg-slate-900 text-white p-6 rounded-2xl shadow-xl flex flex-col">
+        <div className="bg-gray-900 text-white p-6 rounded-2xl shadow-xl flex flex-col">
           <div className="mb-6">
             <h3 className="text-lg font-bold">Historical Seasonality</h3>
-            <p className="text-xs text-slate-400">Validated Monthly Engagement Intensity trends.</p>
+            <p className="text-xs text-gray-400">Validated Monthly Engagement Intensity trends.</p>
           </div>
           <div className="flex-1 space-y-3 overflow-y-auto pr-2 custom-scrollbar">
             {SEASONALITY_HEATMAP.map((item, idx) => (
               <div key={idx} className="group cursor-default">
-                <div className="flex justify-between text-[10px] font-bold text-slate-500 uppercase mb-1">
+                <div className="flex justify-between text-[10px] font-bold text-gray-500 uppercase mb-1">
                   <span>{item.month} • {item.label}</span>
-                  <span className="text-slate-300">{item.intensity}%</span>
+                  <span className="text-gray-300">{item.intensity}%</span>
                 </div>
-                <div className="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                <div className="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
                   <div 
                     className={`h-full rounded-full transition-all duration-1000 group-hover:brightness-125 ${
                       item.intensity > 90 ? 'bg-red-500' : 
                       item.intensity > 70 ? 'bg-red-700' : 
-                      item.intensity > 50 ? 'bg-slate-600' : 'bg-slate-700'
+                      item.intensity > 50 ? 'bg-gray-600' : 'bg-gray-700'
                     }`}
                     style={{ width: `${item.intensity}%` }}
                   ></div>
@@ -182,7 +182,7 @@ const Dashboard: React.FC<DashboardProps> = ({ liveMetrics }) => {
               </div>
             ))}
           </div>
-          <div className="mt-6 pt-6 border-t border-slate-800 text-[11px] text-slate-500 leading-relaxed italic">
+          <div className="mt-6 pt-6 border-t border-gray-800 text-[11px] text-gray-500 leading-relaxed italic">
             *Observed historical cycles based on validated event logs. Projections disabled due to market volatility.
           </div>
         </div>
@@ -190,23 +190,23 @@ const Dashboard: React.FC<DashboardProps> = ({ liveMetrics }) => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Content Performance (Actuals) */}
-        <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+        <div className="bg-gray-900 p-6 rounded-2xl border border-gray-800 shadow-sm overflow-hidden">
           <div className="flex justify-between items-start mb-6">
             <div>
               <div className="flex items-center gap-2">
                 <Trophy size={18} className="text-yellow-500" />
-                <h3 className="text-lg font-bold text-slate-800">Verified Content Profitability</h3>
+                <h3 className="text-lg font-bold text-white">Verified Content Profitability</h3>
               </div>
-              <p className="text-xs text-slate-400">Real-world net profit based on attribution models.</p>
+              <p className="text-xs text-gray-400">Real-world net profit based on attribution models.</p>
             </div>
           </div>
           <div className="h-[300px] w-full">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={contentProfitData} layout="vertical" margin={{ left: 40, right: 40 }}>
-                <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#f1f5f9" />
+                <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#374151" />
                 <XAxis type="number" hide />
-                <YAxis dataKey="title" type="category" axisLine={false} tickLine={false} tick={{fill: '#475569', fontWeight: 700, fontSize: 11}} width={140} />
-                <Tooltip cursor={{fill: '#f8fafc'}} contentStyle={{ borderRadius: '12px', border: 'none' }} />
+                <YAxis dataKey="title" type="category" axisLine={false} tickLine={false} tick={{fill: '#9ca3af', fontWeight: 700, fontSize: 11}} width={140} />
+                <Tooltip cursor={{fill: '#f8fafc'}} contentStyle={{ borderRadius: '12px', border: 'none', backgroundColor: '#1f293b', color: '#fff' }} />
                 <Bar dataKey="profit" radius={[0, 6, 6, 0]} barSize={28}>
                    {contentProfitData.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={index === 0 ? '#ef4444' : '#475569'} fillOpacity={1 - (index * 0.15)} />
