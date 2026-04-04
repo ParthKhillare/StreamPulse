@@ -1,11 +1,8 @@
 import React from 'react';
 import { 
   LayoutDashboard, 
-  GitBranch, 
-  Database, 
-  ShieldCheck, 
   MessageSquare,
-  FileCode2,
+  TrendingUp,
   BarChart3
 } from 'lucide-react';
 
@@ -16,12 +13,11 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
   const menuItems = [
-    { id: 'dashboard', label: 'Executive KPIs', icon: LayoutDashboard },
-    { id: 'lineage', label: 'Data Lineage', icon: GitBranch },
-    { id: 'dbt', label: 'dbt Project', icon: FileCode2 },
-    { id: 'quality', label: 'Data Quality', icon: ShieldCheck },
-    { id: 'bi', label: 'Product Analytics', icon: BarChart3 },
-    { id: 'consultant', label: 'Architect Q&A', icon: MessageSquare },
+    { id: 'dashboard', label: 'Netflix Dashboard', icon: LayoutDashboard },
+    { id: 'trending', label: 'Trending Shows', icon: TrendingUp },
+    { id: 'comprehensive', label: 'All Shows & Movies', icon: BarChart3 },
+    { id: 'analysis', label: 'Trending Analysis', icon: BarChart3 },
+    { id: 'consultant', label: 'Analytics Q&A', icon: MessageSquare },
   ];
 
   return (
@@ -57,10 +53,10 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
 
       <div className="p-4 border-t border-slate-800">
         <div className="bg-slate-800/50 p-4 rounded-xl border border-slate-700">
-          <p className="text-xs text-slate-400 mb-2">System Status</p>
+          <p className="text-xs text-slate-400 mb-2">Netflix Analytics</p>
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-            <span className="text-xs font-medium text-slate-200">52.4M Rows Processed</span>
+            <span className="text-xs font-medium text-slate-200">Live Trending Data</span>
           </div>
         </div>
       </div>

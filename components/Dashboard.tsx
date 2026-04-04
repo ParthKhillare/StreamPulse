@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   XAxis, 
   YAxis, 
@@ -10,21 +9,48 @@ import {
   BarChart,
   Bar,
   Legend,
-  ComposedChart,
-  Line,
   Cell,
   AreaChart
 } from 'recharts';
 import { MOCK_METRICS, TREND_DATA_ACTUALS, SEASONALITY_HEATMAP } from '../constants';
-// Fix: Import LiveBenchmarks from types.ts instead of geminiService.ts
 import { LiveBenchmarks } from '../types';
-import { ArrowUpRight, ArrowDownRight, TrendingUp, Users, DollarSign, Clock, Info, Trophy, Globe, Zap, Calendar, TrendingDown } from 'lucide-react';
+import { mockService } from '../services/mockService';
+import { 
+  ArrowUpRight, 
+  ArrowDownRight, 
+  TrendingUp, 
+  Users, 
+  DollarSign, 
+  Info, 
+  Trophy, 
+  Globe, 
+  Zap, 
+  Calendar, 
+  TrendingDown
+} from 'lucide-react';
 
 interface DashboardProps {
   liveMetrics: LiveBenchmarks | null;
 }
 
 const Dashboard: React.FC<DashboardProps> = ({ liveMetrics }) => {
+  const [currency, setCurrency] = useState('USD');
+
+  const formatCurrency = (value: number) => {
+    switch (currency) {
+      case 'USD':
+        return `$${value.toLocaleString()}`;
+      case 'INR':
+        return `₹${value.toLocaleString()}`;
+      case 'EUR':
+        return `€${value.toLocaleString()}`;
+      case 'GBP':
+        return `£${value.toLocaleString()}`;
+      default:
+        return `$${value.toLocaleString()}`;
+    }
+  };
+
   const contentProfitData = [
     { title: 'Stranger Things S5', profit: 420000000, cost: 200000000 },
     { title: 'Squid Game: The Challenge', profit: 380000000, cost: 50000000 },
@@ -34,10 +60,10 @@ const Dashboard: React.FC<DashboardProps> = ({ liveMetrics }) => {
   ].sort((a, b) => b.profit - a.profit);
 
   const displayMetrics = liveMetrics ? [
-    { title: 'Global Revenue (Actual)', value: liveMetrics.revenue, change: 14.2, unit: 'USD' },
-    { title: 'Paid Members (Actual)', value: liveMetrics.subscribers, change: 8.5, unit: 'Users' },
-    { title: 'Avg Member Rev (Actual)', value: liveMetrics.arm, change: 2.1, unit: 'USD' },
-    { title: 'Churn (Actual)', value: liveMetrics.churn, change: -0.3, unit: 'Monthly' }
+    { title: 'Global Revenue (Actual)', value: formatCurrency(liveMetrics.rawRevenue || 9830000000), change: 14.2, unit: currency },
+    { title: 'Paid Members (Actual)', value: formatCurrency(liveMetrics.rawSubscribers || 282700000), change: 8.5, unit: currency },
+    { title: 'Avg Member Rev (Actual)', value: formatCurrency(liveMetrics.rawArm || 11.60), change: 2.1, unit: currency },
+    { title: 'Churn (Actual)', value: `${(liveMetrics.rawChurn || 2.4).toFixed(1)}%`, change: -0.3, unit: 'Monthly' }
   ] : MOCK_METRICS;
 
   return (
@@ -58,6 +84,18 @@ const Dashboard: React.FC<DashboardProps> = ({ liveMetrics }) => {
           <div className="flex items-center gap-2 px-3 py-1.5 bg-slate-900 text-white rounded-lg text-xs font-semibold shadow-lg ring-4 ring-emerald-500/10">
             <Zap size={14} className="text-emerald-500 fill-emerald-500" />
             Verified Ledger Active
+          </div>
+          <div className="px-3 py-1.5 bg-slate-100 text-slate-700 rounded-lg text-xs font-semibold shadow-lg ring-4 ring-emerald-500/10">
+            <select 
+              value={currency}
+              onChange={(e) => setCurrency(e.target.value)}
+              className="bg-transparent text-white border-none outline-none cursor-pointer"
+            >
+              <option value="USD">USD ($)</option>
+              <option value="INR">INR (₹)</option>
+              <option value="EUR">EUR (€)</option>
+              <option value="GBP">GBP (£)</option>
+            </select>
           </div>
         </div>
       </header>
@@ -108,7 +146,7 @@ const Dashboard: React.FC<DashboardProps> = ({ liveMetrics }) => {
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
                 <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fill: '#94a3b8', fontSize: 11}} dy={10} />
-                <YAxis axisLine={false} tickLine={false} tick={{fill: '#94a3b8', fontSize: 11}} tickFormatter={(v) => `$${(v/1000000000).toFixed(1)}B`} />
+                <YAxis axisLine={false} tickLine={false} tick={{fill: '#94a3b8', fontSize: 11}} tickFormatter={(v) => `${formatCurrency(v/1000000000).replace(/\D/g, '')}B`} />
                 <Tooltip 
                   contentStyle={{ borderRadius: '16px', border: 'none', boxShadow: '0 20px 25px -5px rgb(0 0 0 / 0.1)', backgroundColor: '#1e293b', color: '#fff' }}
                 />
