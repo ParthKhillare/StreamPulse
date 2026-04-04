@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MockShow } from '../services/mockService';
+import { MockShow } from '../services/mockDataService';
 import { mockService } from '../services/mockService';
 import ShowDetail from './ShowDetail';
 import { 

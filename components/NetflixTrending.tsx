@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TrendingShow, TrendingAnalytics } from '../services/mockService';
+import { MockShow } from '../services/mockDataService';
 import { mockService } from '../services/mockService';
 import { 
   ResponsiveContainer, 
@@ -27,10 +27,10 @@ import {
 } from 'lucide-react';
 
 const NetflixTrending: React.FC = () => {
-  const [trendingShows, setTrendingShows] = useState<TrendingShow[]>([]);
-  const [analytics, setAnalytics] = useState<TrendingAnalytics | null>(null);
+  const [trendingShows, setTrendingShows] = useState<MockShow[]>([]);
+  const [analytics, setAnalytics] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-  const [selectedShow, setSelectedShow] = useState<TrendingShow | null>(null);
+  const [selectedShow, setSelectedShow] = useState<MockShow | null>(null);
 
   useEffect(() => {
     const analyticsData = mockService.getTrendingShows();
