@@ -71,8 +71,8 @@ const App: React.FC = () => {
         return (
           <div className="flex items-center justify-center h-64">
             <div className="text-center">
-              <h1 className="text-2xl font-bold text-slate-900 mb-4">StreamPulse Analytics</h1>
-              <p className="text-slate-600">Select a tab from the sidebar to get started.</p>
+              <h1 className="text-2xl font-bold text-white mb-4">StreamPulse Analytics</h1>
+              <p className="text-gray-400">Select a tab from the sidebar to get started.</p>
             </div>
           </div>
         );
@@ -80,13 +80,13 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="flex h-screen bg-slate-50">
+    <div className="flex h-screen bg-black text-white">
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
       <main className="flex-1 overflow-auto">
         {isSyncing && (
-          <div className="fixed top-4 right-4 z-50 bg-white px-4 py-2 rounded-lg shadow-lg border border-slate-200 flex items-center gap-2">
+          <div className="fixed top-4 right-4 z-50 bg-gray-900 px-4 py-2 rounded-lg shadow-lg border border-gray-800 flex items-center gap-2">
             <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-red-600"></div>
-            <span className="text-sm font-medium text-slate-700">Syncing Netflix data...</span>
+            <span className="text-sm font-medium text-white">Syncing Netflix data...</span>
           </div>
         )}
         {renderContent()}
