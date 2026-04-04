@@ -1,11 +1,10 @@
 {
   "name": "streampulse-analytics",
   "version": "1.0.0",
-  "description": "Analytics Engineering Portfolio Project",
+  "description": "Netflix-Style Analytics Dashboard with React and TypeScript",
   "main": "index.tsx",
   "type": "module",
   "dependencies": {
-    "@google/genai": "^1.47.0",
     "lucide-react": "^0.292.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -25,12 +24,14 @@
     "preview": "vite preview"
   },
   "keywords": [
-    "analytics-engineering",
-    "dbt",
-    "bigquery",
-    "portfolio",
-    "data-engineering"
+    "react",
+    "typescript",
+    "analytics",
+    "dashboard",
+    "netflix",
+    "data-visualization",
+    "recharts"
   ],
-  "author": "Analytics Engineer",
+  "author": "Frontend Developer",
   "license": "MIT"
 }
