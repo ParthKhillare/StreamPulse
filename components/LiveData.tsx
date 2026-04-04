@@ -53,7 +53,7 @@ const LiveData: React.FC = () => {
       <div className="p-8">
         <div className="flex items-center justify-center h-64">
           <div className="text-center">
-            <h1 className="text-2xl font-bold text-slate-900 mb-4">Loading Live Data...</h1>
+            <h1 className="text-2xl font-bold text-white mb-4">Loading Live Data...</h1>
           </div>
         </div>
       </div>

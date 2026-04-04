@@ -15,10 +15,13 @@ const App: React.FC = () => {
   const [isSyncing, setIsSyncing] = useState(true);
 
   useEffect(() => {
+    console.log('App: Starting data fetch...');
     const benchmarks = mockService.fetchLiveNetflixBenchmarks();
+    console.log('App: Benchmarks fetched:', benchmarks);
     
     if (benchmarks) {
       setLiveMetrics(benchmarks);
+      console.log('App: LiveMetrics set:', benchmarks);
     } else {
       const defaultData = {
         revenue: '$9.83B',
@@ -32,8 +35,10 @@ const App: React.FC = () => {
         rawChurn: 2.4
       };
       setLiveMetrics(defaultData);
+      console.log('App: Default data set:', defaultData);
     }
     setIsSyncing(false);
+    console.log('App: Sync completed');
   }, []);
 
   useEffect(() => {
@@ -56,18 +61,27 @@ const App: React.FC = () => {
   ];
 
   const renderContent = () => {
+    console.log('App: Rendering content for tab:', activeTab);
+    console.log('App: LiveMetrics available:', !!liveMetrics);
+    
     switch (activeTab) {
       case 'dashboard': 
+        console.log('App: Rendering Dashboard component');
         return <Dashboard liveMetrics={liveMetrics} />;
       case 'live': 
+        console.log('App: Rendering LiveData component');
         return <LiveData />;
       case 'trending': 
+        console.log('App: Rendering NetflixTrending component');
         return <NetflixTrending />;
       case 'comprehensive': 
+        console.log('App: Rendering ComprehensiveTrending component');
         return <ComprehensiveTrending />;
       case 'analysis': 
+        console.log('App: Rendering NetflixTrendingAnalysis component');
         return <NetflixTrendingAnalysis />;
       default:
+        console.log('App: Rendering default content');
         return (
           <div className="flex items-center justify-center h-64">
             <div className="text-center">
