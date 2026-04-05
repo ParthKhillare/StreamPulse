@@ -1,8 +1,8 @@
-# Netflix Pulse: Live Market Intelligence Dashboard
+# StreamPulse: Live Streaming Market Intelligence Dashboard
 
 ![Netflix Pulse Banner](https://images.unsplash.com/photo-1551288049-bbda38a5f452?auto=format&fit=crop&q=80&w=1200&h=400)
 
-Netflix Pulse is a high-fidelity, real-time analytics dashboard that tracks global Netflix performance metrics and trending content. It leverages the **Google Gemini 3 API** with **Google Search Grounding** to fetch verified fiscal data and current global trends.
+StreamPulse is a high-fidelity, real-time analytics dashboard that tracks global streaming platform performance metrics and trending content. It leverages the **Google Gemini 3 API** with **Google Search Grounding** to fetch verified fiscal data and current global trends.
 
 ## 🚀 Key Features
 
@@ -26,7 +26,7 @@ Netflix Pulse is a high-fidelity, real-time analytics dashboard that tracks glob
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/Parthkhillare/StreamPulse.git
+   git clone https://github.com/ParthKhillare/StreamPulse.git
    ```
 2. Install dependencies:
    ```bash

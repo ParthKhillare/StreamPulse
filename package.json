@@ -1,8 +1,8 @@
 {
-  "name": "netflix-pulse",
+  "name": "stream-pulse",
   "version": "1.0.0",
   "type": "module",
-  "description": "Live Netflix Market Intelligence & Trending Content Dashboard",
+  "description": "Live Streaming Platform Market Intelligence & Trending Content Dashboard",
   "main": "index.tsx",
   "scripts": {
     "dev": "vite",
