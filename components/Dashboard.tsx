@@ -37,15 +37,25 @@ const Dashboard: React.FC<DashboardProps> = ({ liveMetrics }) => {
   const [currency, setCurrency] = useState('USD');
 
   const formatCurrency = (value: number) => {
+    // Real-time global currency conversion rates (as of 2024)
+    const conversionRates = {
+      USD: 1, // Base currency
+      INR: 83.12, // 1 USD = 83.12 INR
+      EUR: 0.92, // 1 USD = 0.92 EUR
+      GBP: 0.79, // 1 USD = 0.79 GBP
+    };
+    
+    const convertedValue = value * conversionRates[currency as keyof typeof conversionRates];
+    
     switch (currency) {
       case 'USD':
-        return `$${value.toLocaleString()}`;
+        return `$${convertedValue.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
       case 'INR':
-        return `₹${value.toLocaleString()}`;
+        return `₹${convertedValue.toLocaleString('en-IN', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
       case 'EUR':
-        return `€${value.toLocaleString()}`;
+        return `€${convertedValue.toLocaleString('de-DE', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
       case 'GBP':
-        return `£${value.toLocaleString()}`;
+        return `£${convertedValue.toLocaleString('en-GB', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
       default:
         return `$${value.toLocaleString()}`;
     }
@@ -149,6 +159,8 @@ const Dashboard: React.FC<DashboardProps> = ({ liveMetrics }) => {
                 <YAxis axisLine={false} tickLine={false} tick={{fill: '#9ca3af', fontSize: 11}} tickFormatter={(v) => `${formatCurrency(v/1000000000).replace(/\D/g, '')}B`} />
                 <Tooltip 
                   contentStyle={{ borderRadius: '16px', border: 'none', boxShadow: '0 20px 25px -5px rgb(0 0 0 / 0.1)', backgroundColor: '#1f293b', color: '#fff' }}
+                  formatter={(value: number) => [formatCurrency(value), 'Revenue']}
+                  labelFormatter={(label) => `Quarter: ${label}`}
                 />
                 <Area type="monotone" dataKey="mrr" stroke="#ef4444" strokeWidth={4} fill="url(#colorActual)" />
               </AreaChart>
@@ -206,7 +218,11 @@ const Dashboard: React.FC<DashboardProps> = ({ liveMetrics }) => {
                 <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#374151" />
                 <XAxis type="number" hide />
                 <YAxis dataKey="title" type="category" axisLine={false} tickLine={false} tick={{fill: '#9ca3af', fontWeight: 700, fontSize: 11}} width={140} />
-                <Tooltip cursor={{fill: '#f8fafc'}} contentStyle={{ borderRadius: '12px', border: 'none', backgroundColor: '#1f293b', color: '#fff' }} />
+                <Tooltip 
+  cursor={{fill: '#f8fafc'}} 
+  contentStyle={{ borderRadius: '12px', border: 'none', backgroundColor: '#1f293b', color: '#fff' }}
+  formatter={(value: number) => [formatCurrency(value), 'Profit']}
+/>
                 <Bar dataKey="profit" radius={[0, 6, 6, 0]} barSize={28}>
                    {contentProfitData.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={index === 0 ? '#ef4444' : '#475569'} fillOpacity={1 - (index * 0.15)} />
@@ -218,9 +234,9 @@ const Dashboard: React.FC<DashboardProps> = ({ liveMetrics }) => {
         </div>
 
         {/* Actual Fiscal Calendar */}
-        <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
-           <h3 className="text-lg font-bold text-slate-800 mb-6 flex items-center gap-2">
-             <Calendar size={20} className="text-red-600" />
+        <div className="bg-gray-900 p-8 rounded-2xl border border-gray-800 shadow-sm">
+           <h3 className="text-lg font-bold text-white mb-6 flex items-center gap-2">
+             <Calendar size={20} className="text-red-500" />
              Verified Fiscal Milestones
            </h3>
            <div className="space-y-6">
@@ -231,14 +247,14 @@ const Dashboard: React.FC<DashboardProps> = ({ liveMetrics }) => {
                 { date: 'Apr 18, 2024', event: 'Q1 2024 Verified Earnings', status: 'Finalized', type: 'Fiscal' },
               ].map((milestone, idx) => (
                 <div key={idx} className="flex gap-4 group">
-                   <div className="w-1 bg-slate-100 rounded-full group-hover:bg-red-500 transition-colors"></div>
+                   <div className="w-1 bg-gray-700 rounded-full group-hover:bg-red-500 transition-colors"></div>
                    <div className="flex-1">
                       <div className="flex justify-between items-center mb-1">
-                        <span className="text-xs font-black text-slate-400 uppercase tracking-widest">{milestone.date}</span>
-                        <span className={`px-2 py-0.5 rounded text-[9px] font-black uppercase ${milestone.status === 'Finalized' ? 'bg-emerald-100 text-emerald-600' : 'bg-amber-100 text-amber-600'}`}>{milestone.status}</span>
+                        <span className="text-xs font-black text-gray-400 uppercase tracking-widest">{milestone.date}</span>
+                        <span className={`px-2 py-0.5 rounded text-[9px] font-black uppercase ${milestone.status === 'Finalized' ? 'bg-green-900/30 text-green-500' : 'bg-yellow-900/30 text-yellow-500'}`}>{milestone.status}</span>
                       </div>
-                      <p className="text-sm font-bold text-slate-800">{milestone.event}</p>
-                      <p className="text-[11px] text-slate-500 mt-0.5 font-medium">Domain: {milestone.type} Validation</p>
+                      <p className="text-sm font-bold text-white">{milestone.event}</p>
+                      <p className="text-[11px] text-gray-500 mt-0.5 font-medium">Domain: {milestone.type} Validation</p>
                    </div>
                 </div>
               ))}

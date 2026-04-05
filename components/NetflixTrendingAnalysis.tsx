@@ -45,8 +45,8 @@ const NetflixTrendingAnalysis: React.FC<NetflixTrendingAnalysisProps> = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const analyticsData = await analyticsConsultant.getTrendingAnalytics();
-        const shows = await analyticsConsultant.getTrendingShows();
+        const analyticsData = await mockService.getTrendingAnalytics();
+        const shows = await mockService.getTrendingShows();
         
         setTrendingShows(shows);
         setAnalytics(analyticsData);
