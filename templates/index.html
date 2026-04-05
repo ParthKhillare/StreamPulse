@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="StreamPulse Analytics - Netflix-Style Dashboard">
+    <title>StreamPulse Analytics | Netflix-Style Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #000;
+            color: #fff;
+        }
+        #root {
+            width: 100%;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body class="bg-black text-white">
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        
+        const App = () => {
+            const [shows, setShows] = useState([]);
+            const [loading, setLoading] = useState(true);
+
+            useEffect(() => {
+                const fetchShows = async () => {
+                    try {
+                        const response = await fetch('http://localhost:5000/api/shows');
+                        const data = await response.json();
+                        setShows(data);
+                        setLoading(false);
+                    } catch (error) {
+                        console.error('Error fetching shows:', error);
+                        setLoading(false);
+                    }
+                };
+
+                fetchShows();
+            }, []);
+
+            if (loading) {
+                return React.createElement('div', {
+                    className: 'flex items-center justify-center h-screen'
+                }, 
+                    React.createElement('div', {
+                        className: 'animate-spin rounded-full h-16 w-16 border-b-2 border-red-600'
+                    })
+                );
+            }
+
+            return React.createElement('div', {
+                className: 'min-h-screen bg-black text-white p-8'
+            }, 
+                React.createElement('div', {
+                    className: 'max-w-7xl mx-auto'
+                }, 
+                    React.createElement('h1', {
+                        className: 'text-4xl font-bold mb-8 text-center'
+                    }, 'StreamPulse Analytics'),
+                    React.createElement('p', {
+                        className: 'text-gray-400 text-center mb-8'
+                    }, 'Netflix-Style Analytics Dashboard'),
+                    React.createElement('div', {
+                        className: 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'
+                    }, 
+                        shows.map((show) => 
+                            React.createElement('div', {
+                                key: show.id,
+                                className: 'bg-gray-900 p-6 rounded-xl border border-gray-800'
+                            }, 
+                                React.createElement('h3', {
+                                    className: 'text-xl font-bold text-white mb-2'
+                                }, show.title),
+                                React.createElement('p', {
+                                    className: 'text-gray-300 text-sm mb-4'
+                                }, show.overview),
+                                React.createElement('div', {
+                                    className: 'grid grid-cols-2 gap-4 text-sm'
+                                }, 
+                                    React.createElement('div', null, 
+                                        React.createElement('span', {
+                                            className: 'text-gray-400'
+                                        }, 'IMDB Rating:'),
+                                        React.createElement('span', {
+                                            className: 'text-white ml-2'
+                                        }, show.imdb_rating)
+                                    ),
+                                    React.createElement('div', null, 
+                                        React.createElement('span', {
+                                            className: 'text-gray-400'
+                                        }, 'Weekly Views:'),
+                                        React.createElement('span', {
+                                            className: 'text-white ml-2'
+                                        }, (show.weekly_views / 1000000).toFixed(1) + 'M')
+                                    ),
+                                    React.createElement('div', null, 
+                                        React.createElement('span', {
+                                            className: 'text-gray-400'
+                                        }, 'Genre:'),
+                                        React.createElement('span', {
+                                            className: 'text-white ml-2'
+                                        }, show.genre)
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(React.createElement(App));
+    </script>
+</body>
+</html>
